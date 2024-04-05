@@ -70,5 +70,44 @@ public class Laptop {
         }
     }
     
+    public static void main(String[] args) {
+        Set<Laptop> laptops = new HashSet<>();
+        laptops.add(new Laptop("Lenovo", 8, 512, "Windows 10", "Silver"));
+        laptops.add(new Laptop("Dell", 16, 1000, "Windows 10", "Black"));
+        laptops.add(new Laptop("HP", 8, 256, "Windows 10", "White"));
+    
+        Map<String, String> filters = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+    
+        System.out.println("Введите цифру, соответствующую необходимому критерию:\n1 - ОЗУ\n2 - Объем ЖД\n3 - Операционная система\n4 - Цвет");
+        int criterion = scanner.nextInt();
+    
+        switch (criterion) {
+            case 1:
+                System.out.println("Введите минимальное значение RAM:");
+                int minRam = scanner.nextInt();
+                filters.put("ram", String.valueOf(minRam));
+                break;
+            case 2:
+                System.out.println("Введите минимальный объем хранения:");
+                int minStorage = scanner.nextInt();
+                filters.put("storage", String.valueOf(minStorage));
+                break;
+            case 3:
+                System.out.println("Введите желаемую операционную систему:");
+                String os = scanner.next();
+                filters.put("os", os);
+                break;
+            case 4:
+                System.out.println("Введите цвет:");
+                String color = scanner.next();
+                filters.put("color", color);
+                break;
+            default:
+                System.out.println("Некорректный ввод.");
+        }
+    
+        filterLaptops(laptops, filters);
+    }
 }
 
